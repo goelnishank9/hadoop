@@ -1,0 +1,9 @@
+Export data from file to table:	
+
+sqoop export --connect jdbc:mysql://172.31.54.174/simplilearn --driver com.mysql.jdbc.Driver --username labuser -P --table emp_export --export-dir export
+
+Evalute data from db (to see result on interface)
+sqoop eval --connect jdbc:mysql://172.31.54.174/simplilearn --driver com.mysql.jdbc.Driver --username labuser -P --query "select * from emp_export where empid = 5" 
+
+Import data using query:
+sqoop import --connect jdbc:mysql://172.31.54.174/simplilearn --driver com.mysql.jdbc.Driver --username labuser -P --query "select * from emp_export where empid = 1 AND \$CONDITIONS" -m 1 --target-dir sqoop_q
